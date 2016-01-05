@@ -1,4 +1,11 @@
 NGO::Application.routes.draw do
+  devise_for :members, :controllers => { :sessions => "member_sessions" }
+
+  as :member do
+    get "sign_up", :to => "member_sessions#new"
+    post "sign_in", :to => "member_sessions#create"
+    get "sign_out", :to => "member_sessions#destroy", :defaults => { :format => 'html' }
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
